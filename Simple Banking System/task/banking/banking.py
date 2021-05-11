@@ -16,7 +16,6 @@ exit_status = False
 
 class Bank:
     """Create or log into account in banking system."""
-    # accounts = {}
     BIN = "400000"  # Bank Identification Number
 
     def create_account(self):
@@ -29,7 +28,6 @@ class Bank:
         balance = 0
         print("\nYour card has been created")
         print(f"Your card number:\n{card_number}\nYour card PIN:\n{pin}")
-        # self.accounts[card_number] = [pin, balance]
         # fetching max id from database
         database_cursor.execute("SELECT id FROM card;")
         ids = [x[0] for x in database_cursor.fetchall()]
@@ -60,7 +58,6 @@ class Bank:
         database_cursor.execute(f"SELECT number FROM card WHERE number = {card_number};")
         result = database_cursor.fetchall()
         return result[0][0] == card_number if result else False
-        # return card_number in self.accounts.keys()
 
     def check_pin(self, card_number, pin):
         """Check PIN of the card number."""
@@ -68,7 +65,6 @@ class Bank:
         result = database_cursor.fetchall()
         print(result)
         return result[0][0] == pin
-        # return self.accounts[card_number][0] == pin
 
     def log_into_account(self, card_number, pin):
         """..."""
@@ -84,7 +80,6 @@ class Bank:
         """Return the balance of the actual account."""
         database_cursor.execute(f"SELECT balance FROM card WHERE number = {card_number};")
         return database_cursor.fetchone()[0]
-        # return self.accounts[card_number][1]
 
     def add_income(self, card_number, income):
         """Deposit money to the account"""
